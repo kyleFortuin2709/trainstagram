@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Train | Trainstagram</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/post-picture.css" />
+    <script src="js/post-picture.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="assets/trainstagram.png" alt="trainstagram logo" />
+    </header>
+    <main>
+      <form id="post-picture">
+        <label class="file-upload button" for="new-picture"
+          >Upload a train pic!</label
+        >
+        <input
+          id="new-picture"
+          name="picture"
+          type="file"
+          accept="image/*"
+          required
+        />
+        <img
+          class="preview hidden"
+          src="#"
+          alt="picture uploaded by user"
+          id="picture-preview"
+        />
+
+        <label class="tagline" for="picture-tagline">Add a tagline!</label>
+        <input
+          class="tagline"
+          id="picture-tagline"
+          name="tagline"
+          type="text"
+        />
+
+        <input class="submit button" type="submit" value="Post!" />
+      </form>
+    </main>
+  </body>
+</html>
