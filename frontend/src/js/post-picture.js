@@ -1,4 +1,5 @@
 const picturePreview = document.getElementById("picture-preview");
+const form = document.getElementById("post-picture");
 
 const updatePreview = (updateEvent) => {
   const target = updateEvent.target;
@@ -14,6 +15,48 @@ const updatePreview = (updateEvent) => {
   }
 };
 
+form.addEventListener("submit", async (formEvent) => {
+  formEvent.preventDefault();
+  const img = document.getElementById("new-picture");
+  const tagline = document.getElementById("picture-tagline");
+
+  if ((img.files.length > 0 && img.files.length <= 1) && tagline.value.length > 0) { 
+    fetch("/endpoint", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ img: img.files[0], tagline: tagline.value}),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      img.value = null;
+      picturePreview.removeAttribute("src");
+      picturePreview.classList.add("hidden");
+      tagline.value = "";
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Looks like your train got derailed! We'll choo-choo-try again to get it back on track!")
+    });
+    
+  } else {
+    alert("Please add an image and/or tagline.");
+  }
+
+});
+
 document
   .getElementById("new-picture")
   .addEventListener("change", updatePreview);
+
+
+  
+  
+  
+  
+  
+  
+  
+  
