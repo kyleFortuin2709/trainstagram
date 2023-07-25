@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-const router = Router();
+const routes = Router();
 
-router.get("/login", (_, res) => {
+routes.get("/login", (_, res) => {
   res.sendFile("login.html", {
     root: "./frontend/src/",
   });
 });
 
-export default router;
+export default routes;
