@@ -1,10 +1,10 @@
 
 import express from "express";
-import { SequelizeConnection } from './infrastructure/database/SequelizeConnection';
 import db from "./infrastructure/models";
-import { router as userRoutes } from './app/controller/user';
+import { router as userRoutes } from './app/routes/user.ts';
 
-import { ENV } from "./infra/env";
+import { ENV } from "./infra/env/index.ts";
+import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
 
 console.log("Hello, World!");
 
@@ -18,8 +18,8 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-db.sequelize.sync({ force: true })
-SequelizeConnection.getInstance();
+db.sequelize.sync({ force: true });
+connectToDatabase();
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());

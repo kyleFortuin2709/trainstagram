@@ -2,7 +2,6 @@
   "name": "trainstagram",
   "version": "1.0.0",
   "description": "a feed based social media featuring trains, exclusively",
-  "type": "module",
   "main": "backend/src/app.ts",
   "engines": {
     "node": ">=16.0.0",
@@ -11,7 +10,7 @@
   "scripts": {
     "build": "mkdir -p ./dist && cp .env ./dist/.env",
     "start": "tsc && node ./backend/src/app.ts",
-    "start:dev": "nodemon --exec 'npm run start'",
+    "start:dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,6 +37,7 @@
     "mssql": "^9.1.1",
     "sequelize": "^6.32.1",
     "tedious": "^16.2.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
   "devDependencies": {

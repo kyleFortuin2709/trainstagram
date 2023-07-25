@@ -1,8 +1,9 @@
-import db from "../models";
-import { IRepository } from "./IRepository";
+import { User } from "../../domain/User.ts";
+import db from "../models/index.ts";
+import { IRepository } from "./IRepository.ts";
 
 export class UserRepository implements IRepository<User, number> {
-    private User = db.User
+    private User = db.users
 
     async create(body: User): Promise<User> {
         return await this.User.create({
@@ -14,6 +15,8 @@ export class UserRepository implements IRepository<User, number> {
     }
     
     async readByID(id: number): Promise<User> {
+        console.log('DB: ', db);
+        console.log('DB users: ', db.users);
         return await this.User.findByPk(id);
     }
     async update(id: number, body: User): Promise<User> {

@@ -17,7 +17,7 @@ export class SequelizeConnection {
                         encrypt: true
                     }
                 }
-              });;
+              });
         }
         
 
