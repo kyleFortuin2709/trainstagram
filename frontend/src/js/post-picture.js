@@ -20,11 +20,10 @@ form.addEventListener("submit", async (formEvent) => {
   const img = document.getElementById("new-picture");
   const tagline = document.getElementById("picture-tagline");
   const formData = new FormData(formEvent.target);
-
   if ((img.files.length > 0 && img.files.length <= 1) && tagline.value.length > 0) { 
     fetch("/post", {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: formData
     })
     .then(response => response.json())
     .then(data => {
