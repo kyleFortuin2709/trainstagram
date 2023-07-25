@@ -14,7 +14,7 @@ export async function getConnection() {
     }
   }
 
-export async function request(image: string, tagline: string) {
+export async function storePost(image: Buffer, tagline: string) {
     try {
         const query = "INSERT INTO Posts (UserID,PostImage,Caption,Likes,PostedAt) VALUES (1, ?, ?, 0, ?);"
 
@@ -22,17 +22,34 @@ export async function request(image: string, tagline: string) {
         if (con != null) {
           con.connect();
 
-          const result = await con.query(query,[image, tagline, formatDateToMySQLDateTime(new Date())]);
-
-          console.log(result);
+          const result : any = await con.query(query,[image, tagline, formatDateToMySQLDateTime(new Date())]);
 
           con.release();
 
-          return result;
+          return result[0].affectedRows;
         }
     } catch (error) {
         console.log(error);
     }
+}
+
+export async function getImage(id: string) {
+  try {
+      const query = "SELECT Caption, PostImage FROM Posts WHERE PostID = ?;"
+
+      const con = await getConnection();
+      if (con != null) {
+        con.connect();
+
+        const result : any= await con.query(query,[id]);
+
+        con.release();
+
+        return result[0];
+      }
+  } catch (error) {
+      console.log(error);
+  }
 }
 
 function formatDateToMySQLDateTime(date: Date): string {
