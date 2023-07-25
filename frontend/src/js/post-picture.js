@@ -19,14 +19,12 @@ form.addEventListener("submit", async (formEvent) => {
   formEvent.preventDefault();
   const img = document.getElementById("new-picture");
   const tagline = document.getElementById("picture-tagline");
+  const formData = new FormData(formEvent.target);
 
   if ((img.files.length > 0 && img.files.length <= 1) && tagline.value.length > 0) { 
-    fetch("/endpoint", {
+    fetch("/post", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ img: img.files[0], tagline: tagline.value}),
+      body: JSON.stringify(formData),
     })
     .then(response => response.json())
     .then(data => {
