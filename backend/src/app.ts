@@ -1,26 +1,31 @@
-import express, {Express, Request, Response} from 'express';
 
-import { ENV } from "./infra/env";
+import express from "express";
+import db from "./infrastructure/models";
+import { router as userRoutes } from './app/routes/user.ts';
+
+import { ENV } from "./infra/env/index.ts";
+import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
 
 import postRoutes from "./interfaces/http/routes/post";
 
-import loginRoutes from "./interfaces/http/routes/login";
+console.log(ENV.TEST_VAR);
 
-const PORT = ENV.PORT;
-const app : Express = express();
+const app = express();
 
+process.on("uncaughtException", (err) => {
+    console.log(`ERROR: ${err}`);
+    console.log("Shutting down due to uncaught exception");
+    process.exit(1);
+});
 
+db.sequelize.sync({ force: true });
+connectToDatabase();
 
-app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
 
-app.use(express.static("./frontend/src", { extensions: ["html"] }));
-app.use('/frontend', express.static('./frontend/src', {extensions: ["js", "css", "png"]}));
+app.use("/", userRoutes);
 
-app.use(loginRoutes);
-
-app.use(postRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+const server = app.listen(8080, () => {
+  console.log(`Server started on PORT: 8080 in ${process.env.NODE_ENV}`);
 });
