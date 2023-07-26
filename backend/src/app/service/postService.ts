@@ -3,7 +3,7 @@ import { PostRepository } from "../../infrastructure/repositories/PostRepository
 import { ErrorHandler } from "../helpers/ErrorHandler.js";
 import {convertDateToSqlDateTimeOffset} from "../helpers/DateFormatter.js"
 
-import * as fs from 'fs';
+import * as fs from "fs";
 
 export const postPage = async (req: Request, res: Response) => {
     res.sendFile("post-picture.html", {

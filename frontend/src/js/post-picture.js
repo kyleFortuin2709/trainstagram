@@ -1,6 +1,5 @@
 const picturePreview = document.getElementById("picture-preview");
 const form = document.getElementById("post-picture");
-const form = document.getElementById("post-picture");
 
 const updatePreview = (updateEvent) => {
   const target = updateEvent.target;
