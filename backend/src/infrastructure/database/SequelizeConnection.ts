@@ -7,8 +7,8 @@ export class SequelizeConnection {
 
     public static getInstance(): Sequelize {
         if (!SequelizeConnection.sequelizeConnection) {
-            SequelizeConnection.sequelizeConnection = new Sequelize('trainstagramDB', 'root', '', {
-                host: 'localhost',
+            SequelizeConnection.sequelizeConnection = new Sequelize('Trainstagram', 'admin', 'password1!', {
+                host: 'trainstagram-1.csi9vj8illv2.us-east-1.rds.amazonaws.com',
                 dialect: 'mssql',
                 logging: false,
                 dialectOptions: {
@@ -19,8 +19,6 @@ export class SequelizeConnection {
                 }
               });
         }
-        
-
         return SequelizeConnection.sequelizeConnection;
     }
 }

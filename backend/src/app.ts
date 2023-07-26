@@ -1,15 +1,12 @@
-
 import express from "express";
 import db from "./infrastructure/models";
-import { router as userRoutes } from './app/routes/user.ts';
+import { router as userRoutes } from './app/routes/user.js';
+import { router as postRoutes } from './app/routes/post.js';
 
-import { ENV } from "./infra/env/index.ts";
-import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
+import { ENV } from "./infra/env/index.js";
+import { connectToDatabase } from "./infrastructure/database/connectToDatabase.js";
 
-import postRoutes from "./interfaces/http/routes/post";
-
-console.log(ENV.TEST_VAR);
-
+const PORT = ENV.PORT;
 const app = express();
 
 process.on("uncaughtException", (err) => {
@@ -24,8 +21,12 @@ connectToDatabase();
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-app.use("/", userRoutes);
+app.use(express.static("./frontend/src", { extensions: ["html"] }));
+app.use('/frontend', express.static('./frontend/src', {extensions: ["js", "css", "png"]}));
 
-const server = app.listen(8080, () => {
-  console.log(`Server started on PORT: 8080 in ${process.env.NODE_ENV}`);
+app.use("/", userRoutes);
+app.use("/", postRoutes);
+
+const server = app.listen(PORT, () => {
+  console.log(`Server started on PORT: ${PORT}`);
 });

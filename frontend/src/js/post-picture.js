@@ -1,5 +1,6 @@
 const picturePreview = document.getElementById("picture-preview");
 const form = document.getElementById("post-picture");
+const form = document.getElementById("post-picture");
 
 const updatePreview = (updateEvent) => {
   const target = updateEvent.target;
@@ -28,10 +29,13 @@ form.addEventListener("submit", async (formEvent) => {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      img.value = null;
-      picturePreview.removeAttribute("src");
-      picturePreview.classList.add("hidden");
-      tagline.value = "";
+      if (data.success) {
+        img.value = null;
+        picturePreview.removeAttribute("src");
+        picturePreview.classList.add("hidden");
+        tagline.value = "";
+        alert("Success!");
+      }
     })
     .catch(error => {
       console.error("Error:", error);
@@ -48,6 +52,15 @@ document
   .getElementById("new-picture")
   .addEventListener("change", updatePreview);
 
+
+  
+  
+  
+  
+  
+  
+  
+  
 
   
   
