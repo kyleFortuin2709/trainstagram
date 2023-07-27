@@ -1,5 +1,5 @@
 import express from "express";
-import { getUserProfile } from "../service/userProfileService.js";
+import { getUserProfile } from "../service/userProfileService";
 
 export const router = express.Router();
 

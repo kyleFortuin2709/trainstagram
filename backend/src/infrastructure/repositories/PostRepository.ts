@@ -1,6 +1,6 @@
-import { Post } from "../../domain/Post.js";
-import db from "../models/index.js";
-import { IRepository } from "./IRepository.js";
+import { Post } from "../../domain/Post";
+import db from "../models/index";
+import { IRepository } from "./IRepository";
 import {Op} from "sequelize";
 
 export class PostRepository implements IRepository<Post, number> {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, response } from "express";
-import { PostRepository } from "../../infrastructure/repositories/PostRepository.js";
-import { ErrorHandler } from "../helpers/ErrorHandler.js";
-import {convertDateToSqlDateTimeOffset} from "../helpers/DateFormatter.js"
+import { PostRepository } from "../../infrastructure/repositories/PostRepository";
+import { ErrorHandler } from "../helpers/ErrorHandler";
+import {convertDateToSqlDateTimeOffset} from "../helpers/DateFormatter"
 
 import * as fs from "fs";
 

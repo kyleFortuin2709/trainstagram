@@ -1,10 +1,10 @@
 import express from "express";
 import db from "./infrastructure/models";
-import { router as userRoutes } from './app/routes/user.js';
-import { router as postRoutes } from './app/routes/post.js';
+import { router as userRoutes } from './app/routes/user';
+import { router as postRoutes } from './app/routes/post';
 
 import { ENV } from "./infrastructure/env/";
-import { connectToDatabase } from "./infrastructure/database/connectToDatabase.js";
+import { connectToDatabase } from "./infrastructure/database/connectToDatabase";
 
 const PORT = ENV.PORT;
 const app = express();

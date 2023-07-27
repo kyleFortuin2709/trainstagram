@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 const basename = path.basename(__filename);
-import Sequelize, {Op} from "sequelize";
+import Sequelize from "sequelize";
 import { SequelizeConnection } from '../database/SequelizeConnection';
 let db: any = {};
 
@@ -11,7 +11,7 @@ const sequelize = SequelizeConnection.getInstance();
 fs.readdirSync(__dirname)
   .filter((file: string) => {
     return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".ts"
     );
   })
   .forEach((file: any) => {

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { UserRepository } from "../../infrastructure/repositories/UserRepository.js";
-import { ErrorHandler } from "../helpers/ErrorHandler.js";
+import { UserRepository } from "../../infrastructure/repositories/UserRepository";
+import { ErrorHandler } from "../helpers/ErrorHandler";
 
 export const getUserProfile = async (req: Request, res: Response, next: NextFunction) => {
     //TODO: validation goes here

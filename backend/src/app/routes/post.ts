@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { postMedia, getMedia, getAllMedia, getAllUserMedia, postPage, viewPost } from "../service/postService.js";
-import { RetrieveFile } from "../service/fileMiddlewareService.js";
+import { postMedia, getMedia, getAllMedia, getAllUserMedia, postPage, viewPost } from "../service/postService";
+import { RetrieveFile } from "../service/fileMiddlewareService";
 
 export const router = Router();
 
