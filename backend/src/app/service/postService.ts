@@ -30,7 +30,7 @@ export const postMedia = async (req: any, res: Response, next: NextFunction) => 
     } else {
         //Need to add the image data to the request.
         let request = req.body;
-        request.UserID = 1;
+        request.userID = 1;
         request.Image = data;
         request.PostedAt = convertDateToSqlDateTimeOffset(new Date())
         

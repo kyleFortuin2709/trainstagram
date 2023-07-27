@@ -7,9 +7,11 @@ export class PostRepository implements IRepository<PostAttributes, number> {
     public PostRepository() {}
 
     async create(body: PostAttributes): Promise<PostAttributes> {
+        console.log(body.userID);
+        
         return await Post.create({
             postID: 0,
-            UserID: body.UserID,
+            userID: body.userID,
             Image: body.Image,
             Likes: 0,
             Caption: body.Caption,
@@ -26,7 +28,7 @@ export class PostRepository implements IRepository<PostAttributes, number> {
     async readAll(id: number): Promise<PostAttributes[] | undefined> {
         return await Post.findAll({
             where: {
-                UserID: {
+                userID: {
                     [Op.ne]: id,
                 }
             }
@@ -37,7 +39,7 @@ export class PostRepository implements IRepository<PostAttributes, number> {
     async readAllUser(id: number): Promise<PostAttributes[] | undefined> {
         return await Post.findAll({
             where: {
-                UserID: id
+                userID: id
             }
         });;
     }

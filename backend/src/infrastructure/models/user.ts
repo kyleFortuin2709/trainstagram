@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import Post from "../models/post";
 import sequelize from "sequelize/types/sequelize";
 import { SequelizeConnection } from "../database/SequelizeConnection";
 
@@ -38,11 +39,12 @@ export interface UserAttributes {
     }
     }, {
       freezeTableName: true,
+      modelName: 'User',
       sequelize: SequelizeConnection.getInstance(),
       timestamps: false
     });
 
     // console.log(User === sequelize.models.User);
 
-    // return User;
-export default User;
+    User.hasMany(Post, { foreignKey: 'userID' });
+    export default User;

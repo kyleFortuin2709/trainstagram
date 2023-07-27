@@ -1,10 +1,11 @@
 import { DataTypes, Model } from "sequelize";
+import User from "../models/user";
 import sequelize from "sequelize/types/sequelize";
 import { SequelizeConnection } from "../database/SequelizeConnection";
 
 export interface PostAttributes {
   postID: number;
-  UserID: number;
+  userID: number;
   Image: Buffer | string;
   Caption: string;
   Likes: number;
@@ -13,7 +14,7 @@ export interface PostAttributes {
 
   class Post extends Model<PostAttributes> implements PostAttributes {
     declare postID: number;
-    declare UserID: number;
+    declare userID: number;
     declare Image: Buffer | string;
     declare Caption: string;
     declare Likes: number;
@@ -27,9 +28,9 @@ export interface PostAttributes {
       allowNull: false,
       autoIncrement: true
     },
-    UserID: {
+    userID:{
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     Image: {
       type: DataTypes.BLOB,
@@ -50,7 +51,10 @@ export interface PostAttributes {
     }, {
       freezeTableName: true,
       sequelize: SequelizeConnection.getInstance(),
+      modelName: 'Post',
       timestamps: false
     });
+
+    // Post.belongsTo(User);
 
 export default Post;
