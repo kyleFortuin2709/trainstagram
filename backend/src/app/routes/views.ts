@@ -1,4 +1,3 @@
-import path = require("path");
 import express from "express";
 
 export const viewRoutes = express.Router();
