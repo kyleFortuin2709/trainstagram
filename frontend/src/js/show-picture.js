@@ -84,9 +84,9 @@ document.getElementById("fetchAllButton").addEventListener("click", async functi
   }
 });
 
-document.getElementById("fetchFeadButton").addEventListener("click", async function fetchData() {
+document.getElementById("fetchFeedButton").addEventListener("click", async function fetchData() {
   try {
-    const response =  await fetch("/post-fead");
+    const response =  await fetch("/post-feed");
     const data = await response.json();
 
     const resultContainer = document.getElementById("resultContainer");
