@@ -1,16 +1,10 @@
 import express from "express";
-import { router as userRoutes } from './app/routes/user.ts';
-import { ENV } from "./infrastructure/env/index.ts";
-import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
-import express from "express";
-import db from "./infrastructure/models";
-
-console.log("Hello, World!");
-
-console.log(ENV.TEST_VAR);
+import { router as userRoutes } from './app/routes/user';
+import { ENV } from "./infrastructure/env/index";
+import { connectToDatabase } from "./infrastructure/database/connectToDatabase";
 
 const app = express();
-const port = 8000
+const PORT = ENV.PORT;
 process.on("uncaughtException", (err) => {
     console.log(`ERROR: ${err}`);
     console.log("Shutting down due to uncaught exception");
@@ -25,6 +19,13 @@ app.use(express.json());
 
 app.use("/", userRoutes);
 
-const server = app.listen(port, () => {
-  console.log(`Server started on PORT: ${port} in ${process.env.NODE_ENV}`);
+// this can be added to its own routes file
+// I just wanted it to make sure the app's frontend was working
+app.use(express.static("./frontend/src/", { extensions: ["html"] }));
+app.get("/", (_, res) => {
+  res.sendFile("index.html", { root: "./frontend/src/" });
+})
+
+const server = app.listen(PORT, () => {
+  console.log(`Server started on PORT: ${PORT} in ${ENV.ENVIRONMENT}`);
 });

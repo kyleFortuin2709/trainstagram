@@ -1,7 +1,5 @@
-// import { User } from "../../domain/User.ts";
-// import db from "../models/index.ts";
-import User from "../models/user.ts";
-import { IRepository } from "./IRepository.ts";
+import User from "../models/user";
+import { IRepository } from "./IRepository";
 
 export class UserRepository implements IRepository<User, number> {
 
