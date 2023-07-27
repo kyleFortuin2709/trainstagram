@@ -4,8 +4,8 @@ feed-based social media site for posting pictures of trains
 
 ## Prerequisites
 
-- node ^16.0.0
-- npm ^8.0.0
+- node ^18.0.0
+- npm ^9.0.0
 
 ## Setup
 
@@ -16,7 +16,7 @@ feed-based social media site for posting pictures of trains
 ## Running
 
 - `npm run start` for prod running
-- `npm run start:dev` for local development with nodemon
+- `npm run start:dev` for local development with `nodemon` and `ts-node`
 
 ## Collaborators
 
