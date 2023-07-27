@@ -1,3 +1,4 @@
+import express from "express";
 import { router as userRoutes } from './app/routes/user.ts';
 import { ENV } from "./infrastructure/env/index.ts";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
@@ -16,7 +17,7 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: false });
 connectToDatabase();
 
 app.use(express.urlencoded({extended: true}))
