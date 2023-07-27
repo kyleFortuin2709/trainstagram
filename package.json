@@ -8,9 +8,9 @@
     "npm": ">=8.0.0 <10.0.0"
   },
   "scripts": {
+    "prestart": "node -e \"const fs = require('fs'); if (!fs.existsSync('./uploads')) { fs.mkdirSync('./uploads'); }\"",
     "start": "tsc && node ./dist/backend/src/app.js",
     "start:dev": "npx nodemon",
-    "copy-static": "copyfiles .env dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

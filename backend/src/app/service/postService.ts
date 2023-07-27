@@ -5,18 +5,6 @@ import {convertDateToSqlDateTimeOffset} from "../helpers/DateFormatter"
 
 import * as fs from "fs";
 
-export const postPage = async (req: Request, res: Response) => {
-    res.sendFile("post-picture.html", {
-        root: "./frontend/src/",
-    });
-}
-
-export const viewPost = async (req: Request, res: Response) => {
-    res.sendFile("show-picture.html", {
-        root: "./frontend/src/",
-    });
-}
-
 export const postMedia = async (req: any, res: Response, next: NextFunction) => {
   if (req.body != null && req.file != null) {
     const image = req.file;
@@ -77,14 +65,11 @@ export const getMedia = async (req: Request, res: Response, next: NextFunction) 
             Image: result.Image
         },
     });
-    if (req.params != null) {
-        
-      }
 }
 
 export const getAllMedia = async (req: Request, res: Response, next: NextFunction) => {
     const repository = new PostRepository();
-    const result = await repository.readAll(1);
+    const result = (req.params.id != null)?await repository.readAll(parseInt(req.params.id)): await repository.readAllUser(1);
     console.log(result);
     
     if (!result) {
@@ -100,25 +85,3 @@ export const getAllMedia = async (req: Request, res: Response, next: NextFunctio
         post: result,
     });
 }
-
-export const getAllUserMedia = async (req: Request, res: Response, next: NextFunction) => {
-    const repository = new PostRepository();
-    const result = await repository.readAllUser(1);
-    console.log(result);
-    
-    if (!result) {
-        return next(new ErrorHandler('Post not found!', 404));
-    }
-    
-    for (const post of result) {
-        post.Image = (post.Image != null)?post.Image.toString('base64'):'N/A';
-
-    }
-    res.status(200).send({
-        success: true,
-        post: result,
-    });
-}
-
-
-
