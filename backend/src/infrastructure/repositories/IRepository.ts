@@ -1,3 +1,4 @@
+import {Op} from "sequelize";
 export interface IRepository<T, ID> {
     create(body: T): Promise<T>;
     readByID(id: ID): Promise<T>;

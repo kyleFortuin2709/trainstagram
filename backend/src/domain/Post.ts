@@ -1,7 +1,7 @@
 export type Post = {
     PostId?: number;
     UserId: number,
-    Image?: Buffer,
+    Image?: Buffer | string,
     Caption: string,
     Likes: number,
     PostedAt: Date,

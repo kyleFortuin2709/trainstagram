@@ -30,7 +30,7 @@ export const postMedia = async (req: any, res: Response, next: NextFunction) => 
     } else {
         //Need to add the image data to the request.
         let request = req.body;
-        request.UserId = 1;
+        request.UserId = 2;
         request.Image = data;
         request.PostedAt = convertDateToSqlDateTimeOffset(new Date())
         
@@ -44,36 +44,80 @@ export const postMedia = async (req: any, res: Response, next: NextFunction) => 
         res.status(200).json({
             success: true
         });
+
+        fs.unlink(image.path, (err) => {
+            if (err) {
+              console.error('Error deleting file:', err);
+            } else {
+              console.log('File deleted successfully!');
+            }
+          });
     }
   }); 
   }
 }
 
 export const getMedia = async (req: Request, res: Response, next: NextFunction) => {
+    const repository = new PostRepository();
+    const id : any = req.params.id;
+    const result = await repository.readByID(id);
+    console.log(result);
+    
+    if (!result) {
+        return next(new ErrorHandler('Post not found!', 404));
+    }
+    
+    result.Image = (result.Image != null)?result.Image.toString('base64'):'N/A';
+    res.status(200).send({
+        success: true,
+        post: {
+            Caption: result.Caption,
+            Likes: result.Likes,
+            PostedAt: result.PostedAt,
+            Image: result.Image
+        },
+    });
     if (req.params != null) {
-        const repository = new PostRepository();
-        const id : any = req.params.id;
-        const result = await repository.readByID(id);
-        console.log(result);
         
-        if (!result) {
-            return next(new ErrorHandler('Post not found!', 404));
-        }
-        
-        const image : string = (result.Image != null)?result.Image.toString('base64'):'N/A';
-
-        delete result.Image;
-
-        res.status(200).send({
-            success: true,
-            data: {
-                Caption: result.Caption,
-                Likes: result.Likes,
-                PostedAt: result.PostedAt,
-            },
-            image: image
-        });
       }
+}
+
+export const getAllMedia = async (req: Request, res: Response, next: NextFunction) => {
+    const repository = new PostRepository();
+    const result = await repository.readAll(1);
+    console.log(result);
+    
+    if (!result) {
+        return next(new ErrorHandler('Post not found!', 404));
+    }
+    
+    for (const post of result) {
+        post.Image = (post.Image != null)?post.Image.toString('base64'):'N/A';
+
+    }
+    res.status(200).send({
+        success: true,
+        post: result,
+    });
+}
+
+export const getAllUserMedia = async (req: Request, res: Response, next: NextFunction) => {
+    const repository = new PostRepository();
+    const result = await repository.readAllUser(1);
+    console.log(result);
+    
+    if (!result) {
+        return next(new ErrorHandler('Post not found!', 404));
+    }
+    
+    for (const post of result) {
+        post.Image = (post.Image != null)?post.Image.toString('base64'):'N/A';
+
+    }
+    res.status(200).send({
+        success: true,
+        post: result,
+    });
 }
 
 

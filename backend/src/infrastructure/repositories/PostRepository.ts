@@ -1,6 +1,7 @@
 import { Post } from "../../domain/Post.js";
 import db from "../models/index.js";
 import { IRepository } from "./IRepository.js";
+import {Op} from "sequelize";
 
 export class PostRepository implements IRepository<Post, number> {
     private Post = db.posts
@@ -9,6 +10,7 @@ export class PostRepository implements IRepository<Post, number> {
         return await this.Post.create({
             UserId: body.UserId,
             Image: body.Image,
+            Likes: 0,
             Caption: body.Caption,
             PostedAt: body.PostedAt,
         });
@@ -18,6 +20,25 @@ export class PostRepository implements IRepository<Post, number> {
         console.log(id);
         this.Post
         return await this.Post.findByPk(id);
+    }
+
+    async readAll(id: number): Promise<Post[]> {
+        return await this.Post.findAll({
+            where: {
+                UserId: {
+                    [Op.ne]: id,
+                }
+            }
+        });;
+        
+    }
+
+    async readAllUser(id: number): Promise<Post[]> {
+        return await this.Post.findAll({
+            where: {
+                UserId: id
+            }
+        });;
     }
     
     async update(id: number, body: Post): Promise<Post> {
@@ -37,5 +58,7 @@ export class PostRepository implements IRepository<Post, number> {
         post.destroy();
         return true;
     }
+
+
 
 }

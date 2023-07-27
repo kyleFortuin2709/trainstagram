@@ -15,7 +15,7 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-db.sequelize.sync({ force: true });
+db.sequelize.sync();
 connectToDatabase();
 
 app.use(express.urlencoded({extended: true}))

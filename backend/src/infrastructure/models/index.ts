@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 const basename = path.basename(__filename);
-import Sequelize from "sequelize";
+import Sequelize, {Op} from "sequelize";
 import { SequelizeConnection } from '../database/SequelizeConnection';
 let db: any = {};
 
