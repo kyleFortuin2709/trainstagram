@@ -1,6 +1,6 @@
 // import User from "../models/user";
-import User from "../models/user";
-import Post from "../models/post";
+import User from "../../domain/user";
+import Post from "../../domain/post";
 import { SequelizeConnection } from "./SequelizeConnection";
 
 export const connectToDatabase = async () => {

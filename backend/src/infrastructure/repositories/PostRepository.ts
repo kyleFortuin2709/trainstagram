@@ -1,4 +1,4 @@
-import Post, {PostAttributes} from "../models/post";
+import Post, {PostAttributes} from "../../domain/post";
 import { IRepository } from "./IRepository";
 import {Op} from "sequelize";
 
