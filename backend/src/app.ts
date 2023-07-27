@@ -1,17 +1,16 @@
-
 import express from "express";
-// import db from "./infrastructure/models";
 import { router as userRoutes } from './app/routes/user.ts';
-
-import { ENV } from "./infra/env/index.ts";
+import { ENV } from "./infrastructure/env/index.ts";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
+import express from "express";
+import db from "./infrastructure/models";
 
 console.log("Hello, World!");
 
 console.log(ENV.TEST_VAR);
 
 const app = express();
-
+const port = 8000
 process.on("uncaughtException", (err) => {
     console.log(`ERROR: ${err}`);
     console.log("Shutting down due to uncaught exception");
@@ -26,6 +25,6 @@ app.use(express.json());
 
 app.use("/", userRoutes);
 
-const server = app.listen(8080, () => {
-  console.log(`Server started on PORT: 8080 in ${process.env.NODE_ENV}`);
+const server = app.listen(port, () => {
+  console.log(`Server started on PORT: ${port} in ${process.env.NODE_ENV}`);
 });
