@@ -1,4 +1,4 @@
-import User, { UserAttributes } from "../models/user";
+import User, { UserAttributes } from "../../domain/user";
 import { IRepository } from "./IRepository";
 
 export class UserRepository implements IRepository<UserAttributes, number> {
