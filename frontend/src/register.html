@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/home.css">
+    <link rel="stylesheet" type="text/css" href="./css/register.css">
+    <title>Register | Trainstagram</title>
+  </head>
+  <body>
+    <main>
+      <section id="register-section">
+        <img class="logo" src="assets/trainstagram.png" alt="trainstagram logo" />
+        <form action="" method="post">
+          <section id="form-heading">
+            <h1>All Aboard!</h1>
+            <h2>Register For Your Train Ticket Here!</h2>
+          </section>
+          <section>
+            <label for="username">Username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              required
+              autofocus
+            />
+          </section>
+          <section>
+            <label for="current-password">Password</label>
+            <input
+              id="current-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </section>
+          <button type="submit">Register</button>
+          <a href="login.html" id="logLink">Have An Account? Login Here</a>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
