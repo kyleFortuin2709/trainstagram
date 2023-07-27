@@ -1,14 +1,15 @@
-import { Post } from "../../domain/Post";
-import db from "../models/index";
+import Post from "../models/post";
 import { IRepository } from "./IRepository";
 import {Op} from "sequelize";
 
 export class PostRepository implements IRepository<Post, number> {
-    private Post = db.posts
+
+    public PostRepository() {}
 
     async create(body: Post): Promise<Post> {
-        return await this.Post.create({
-            UserId: body.UserId,
+        return await Post.create({
+            postID: 0,
+            UserID: body.UserID,
             Image: body.Image,
             Likes: 0,
             Caption: body.Caption,
@@ -16,16 +17,15 @@ export class PostRepository implements IRepository<Post, number> {
         });
     }
     
-    async readByID(id: number): Promise<Post> {
+    async readByID(id: number): Promise<Post | null> {
         console.log(id);
-        this.Post
-        return await this.Post.findByPk(id);
+        return await Post?.findByPk(id);
     }
 
-    async readAll(id: number): Promise<Post[]> {
-        return await this.Post.findAll({
+    async readAll(id: number): Promise<Post[] | null> {
+        return await Post.findAll({
             where: {
-                UserId: {
+                UserID: {
                     [Op.ne]: id,
                 }
             }
@@ -33,32 +33,30 @@ export class PostRepository implements IRepository<Post, number> {
         
     }
 
-    async readAllUser(id: number): Promise<Post[]> {
-        return await this.Post.findAll({
+    async readAllUser(id: number): Promise<Post[] | null> {
+        return await Post.findAll({
             where: {
-                UserId: id
+                UserID: id
             }
         });;
     }
     
-    async update(id: number, body: Post): Promise<Post> {
-        let post = await this.Post.findByPk(id);
-
-        post = await this.Post.update({
+    async update(id: number, body: Post): Promise<Post | null> {
+        await Post.update({
             Caption: body.Caption,
             Likes: body.Likes,
             PostedAt: body.PostedAt,
-        });
+        }, { where: { postID: id } });
+
+        const post = await Post.findByPk(id);
 
         return post;
     }
 
     async delete(id: number): Promise<boolean> {
-        let post = await this.Post.findByPk(id);
-        post.destroy();
+        let post = await Post.findByPk(id);
+        post?.destroy();
         return true;
     }
-
-
 
 }

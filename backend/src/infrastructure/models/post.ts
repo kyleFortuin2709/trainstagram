@@ -5,7 +5,7 @@ import { SequelizeConnection } from "../database/SequelizeConnection";
 export interface PostAttributes {
   postID: number;
   UserID: number;
-  Image: Blob;
+  Image: Buffer | string;
   Caption: string;
   Likes: number;
   PostedAt: Date; 
@@ -14,7 +14,7 @@ export interface PostAttributes {
   class Post extends Model<PostAttributes> implements PostAttributes {
     declare postID: number;
     declare UserID: number;
-    declare Image: Blob;
+    declare Image: Buffer | string;
     declare Caption: string;
     declare Likes: number;
     declare PostedAt: Date;
