@@ -3,7 +3,11 @@ import express from "express";
 export const viewRoutes = express.Router();
 
 viewRoutes.get('/', (req, res) => {
-      res.sendFile("index.html", { root: "./frontend/src/" });
+  res.redirect('/login')
+});
+
+viewRoutes.get('/home', (req, res) => {
+      res.sendFile("home.html", { root: "./frontend/src/" });
 });
 
 viewRoutes.get('/login', (req, res) => {

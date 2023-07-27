@@ -20,8 +20,7 @@ connectToDatabase();
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-app.use(express.static("./frontend/src", { extensions: ["html"] }));
-app.use('/frontend', express.static('./frontend/src', {extensions: ["js", "css", "png"]}));
+app.use(express.static("./frontend/src", { extensions: ["html", "js", "css", "png"] }));
 
 app.use(viewRoutes);
 app.use(userRoutes);

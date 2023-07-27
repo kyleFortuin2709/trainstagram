@@ -8,7 +8,6 @@ const storage = multer.diskStorage({
       cb(null,'uploads/' )
     },
     filename: function (req: Request, file: Express.Multer.File, cb: any) {
-      
       const uniqueSuffix : string = new Date().toISOString().replace(/:/g, "-").replace(/T/, "_") + `_0${1}`;
       const fileName : string = uniqueSuffix + path.extname(file.originalname);
       cb(null, fileName)
@@ -17,7 +16,6 @@ const storage = multer.diskStorage({
   
 export const RetrieveFile = multer({ 
     storage: storage,
-    dest: 'uploads/',
     limits: {fileSize: 1000000},
     fileFilter: (req: Request, file: Express.Multer.File, callback: FileFilterCallback) => {
       const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg'];

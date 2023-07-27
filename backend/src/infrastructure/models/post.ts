@@ -53,7 +53,4 @@ export interface PostAttributes {
       timestamps: false
     });
 
-    // console.log(User === sequelize.models.User);
-
-    // return User;
 export default Post;

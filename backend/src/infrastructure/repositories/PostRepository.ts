@@ -1,12 +1,12 @@
-import Post from "../models/post";
+import Post, {PostAttributes} from "../models/post";
 import { IRepository } from "./IRepository";
 import {Op} from "sequelize";
 
-export class PostRepository implements IRepository<Post, number> {
+export class PostRepository implements IRepository<PostAttributes, number> {
 
     public PostRepository() {}
 
-    async create(body: Post): Promise<Post> {
+    async create(body: PostAttributes): Promise<PostAttributes> {
         return await Post.create({
             postID: 0,
             UserID: body.UserID,
@@ -17,12 +17,13 @@ export class PostRepository implements IRepository<Post, number> {
         });
     }
     
-    async readByID(id: number): Promise<Post | null> {
+    async readByID(id: number): Promise<PostAttributes | undefined> {
         console.log(id);
-        return await Post?.findByPk(id);
+        const result = await Post.findByPk(id);
+        return result?.dataValues;
     }
 
-    async readAll(id: number): Promise<Post[] | null> {
+    async readAll(id: number): Promise<PostAttributes[] | undefined> {
         return await Post.findAll({
             where: {
                 UserID: {
@@ -33,7 +34,7 @@ export class PostRepository implements IRepository<Post, number> {
         
     }
 
-    async readAllUser(id: number): Promise<Post[] | null> {
+    async readAllUser(id: number): Promise<PostAttributes[] | undefined> {
         return await Post.findAll({
             where: {
                 UserID: id
@@ -41,7 +42,7 @@ export class PostRepository implements IRepository<Post, number> {
         });;
     }
     
-    async update(id: number, body: Post): Promise<Post | null> {
+    async update(id: number, body: PostAttributes): Promise<PostAttributes | null> {
         await Post.update({
             Caption: body.Caption,
             Likes: body.Likes,
