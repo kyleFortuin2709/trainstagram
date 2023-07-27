@@ -5,14 +5,12 @@ feed-based social media site for posting pictures of trains
 ## Prerequisites
 
 - node ^18.0.0
-- npm ^9.0.0
+- npm ^8.0.0
 
 ## Setup
 
-- if this is your first time running the project, run `mkdir ./dist/`
 - `npm install` to install dependencies
 - `cp .env.example .env` and populate env vars with values from another dev
-- `npm run build` to build project
 
 ## Running
 
