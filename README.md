@@ -9,6 +9,7 @@ feed-based social media site for posting pictures of trains
 
 ## Setup
 
+- if this is your first time running the project, run `mkdir ./dist/`
 - `npm install` to install dependencies
 - `cp .env.example .env` and populate env vars with values from another dev
 - `npm run build` to build project
