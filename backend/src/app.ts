@@ -19,6 +19,13 @@ app.use(express.json());
 
 app.use("/", userRoutes);
 
+// this can be added to its own routes file
+// I just wanted it to make sure the app's frontend was working
+app.use(express.static("./frontend/src/", { extensions: ["html"] }));
+app.get("/", (_, res) => {
+  res.sendFile("index.html", { root: "./frontend/src/" });
+})
+
 const server = app.listen(PORT, () => {
   console.log(`Server started on PORT: ${PORT} in ${ENV.ENVIRONMENT}`);
 });
