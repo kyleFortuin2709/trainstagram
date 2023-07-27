@@ -1,6 +1,7 @@
 import express from "express";
-import { router as userRoutes } from './app/routes/user';
-import { router as postRoutes } from './app/routes/post';
+import { userRoutes } from './app/routes/user';
+import { postRoutes } from './app/routes/post';
+import { viewRoutes } from "./app/routes/views";
 import { ENV } from "./infrastructure/env/index";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase";
 
@@ -22,8 +23,9 @@ app.use(express.json());
 app.use(express.static("./frontend/src", { extensions: ["html"] }));
 app.use('/frontend', express.static('./frontend/src', {extensions: ["js", "css", "png"]}));
 
-app.use("/", userRoutes);
-app.use("/", postRoutes);
+app.use(viewRoutes);
+app.use(userRoutes);
+app.use(postRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server started on PORT: ${PORT}`);
