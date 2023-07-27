@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/home.css">
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <title>Log In | Trainstagram</title>
+  </head>
+  <body>
+    <main>
+      <section id="login-section">
+        <img class="logo" src="assets/trainstagram.png" alt="trainstagram logo" />
+        <form action="" method="post">
+          <section id="form-heading">
+            <h1>Welcome!</h1>
+            <h2>Please Log In</h2>
+          </section>
+          <section>
+            <label for="username">Username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              required
+              autofocus
+            />
+          </section>
+          <section>
+            <label for="current-password">Password</label>
+            <input
+              id="current-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </section>
+          <button type="submit">Register</button>
+          <a href="register.html" id="regLink">No Account?, Register Here</a>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
