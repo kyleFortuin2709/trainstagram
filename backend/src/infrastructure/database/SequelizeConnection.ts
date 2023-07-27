@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import { ENV } from "../env/";
 
 export class SequelizeConnection {
     private static sequelizeConnection: Sequelize;
@@ -7,8 +8,11 @@ export class SequelizeConnection {
 
     public static getInstance(): Sequelize {
         if (!SequelizeConnection.sequelizeConnection) {
-            SequelizeConnection.sequelizeConnection = new Sequelize('Trainstagram', 'admin', 'password1!', {
-                host: 'trainstagram-1.csi9vj8illv2.us-east-1.rds.amazonaws.com',
+            SequelizeConnection.sequelizeConnection = new Sequelize(        
+                ENV.DB_NAME,
+                ENV.DB_USER,
+                ENV.DB_PASSWORD, {
+                host: ENV.DB_SERVER,
                 dialect: 'mssql',
                 logging: false,
                 dialectOptions: {

@@ -3,7 +3,7 @@ import db from "./infrastructure/models";
 import { router as userRoutes } from './app/routes/user.js';
 import { router as postRoutes } from './app/routes/post.js';
 
-import { ENV } from "./infra/env/index.js";
+import { ENV } from "./infrastructure/env/";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase.js";
 
 const PORT = ENV.PORT;
