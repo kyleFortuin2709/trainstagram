@@ -34,7 +34,7 @@ export interface UserAttributes {
       allowNull: false
     },
     profilePicture: {
-      type: DataTypes.STRING,
+      type: DataTypes.BLOB,
       allowNull: true
     }
     }, {
