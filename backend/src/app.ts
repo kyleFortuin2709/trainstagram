@@ -3,7 +3,7 @@ import express from "express";
 import db from "./infrastructure/models";
 import { router as userRoutes } from './app/routes/user.ts';
 
-import { ENV } from "./infra/env/index.ts";
+import { ENV } from "./infrastructure/env/index.ts";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase.ts";
 
 console.log("Hello, World!");
