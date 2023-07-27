@@ -23,7 +23,7 @@
 }
 
 form {
-    background-color: #15172b;
+    background-color: #2d2f49;
     border-radius: 20px;
     box-sizing: border-box;
     height: 500px;
@@ -58,4 +58,17 @@ button{
 
 button:hover{
     background-color: #41dab1;
+}
+
+#logLink{
+    padding: 25px;
+    font-size: 20px;
+    color:white;
+    text-decoration: none;
+}
+#logLink:visited{
+    color: purple;
+}
+#logLink:active{
+    color: #41dab1;
 }
