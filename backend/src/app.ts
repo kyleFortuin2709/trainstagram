@@ -1,21 +1,18 @@
 import express from "express";
-import db from "./infrastructure/models";
 import { router as userRoutes } from './app/routes/user';
-import { router as postRoutes } from './app/routes/post';
-
-import { ENV } from "./infrastructure/env/";
+import { ENV } from "./infrastructure/env/index";
 import { connectToDatabase } from "./infrastructure/database/connectToDatabase";
 
 const PORT = ENV.PORT;
 const app = express();
-
+const PORT = ENV.PORT;
 process.on("uncaughtException", (err) => {
     console.log(`ERROR: ${err}`);
     console.log("Shutting down due to uncaught exception");
     process.exit(1);
 });
 
-db.sequelize.sync();
+// db.sequelize.sync({ force: false });
 connectToDatabase();
 
 app.use(express.urlencoded({extended: true}))

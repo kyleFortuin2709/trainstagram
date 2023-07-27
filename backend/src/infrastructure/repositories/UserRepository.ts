@@ -3,37 +3,40 @@ import db from "../models/index";
 import { IRepository } from "./IRepository";
 
 export class UserRepository implements IRepository<User, number> {
-    private User = db.users
+
+    public UserRepository() {}
 
     async create(body: User): Promise<User> {
-        return await this.User.create({
-            // userID: number;
+        return await User.create({
+            userID: 0,
             username: body.username,
             biography: body.biography,
             profilePicture: body.profilePicture,
         });
     }
     
-    async readByID(id: number): Promise<User> {
-        console.log('DB: ', db);
-        console.log('DB users: ', db.users);
-        return await this.User.findByPk(id);
+    async readByID(id: number): Promise<User | null> {
+        // console.log('DB: ', db);
+        console.log('DB users: ', await User.findAll());
+        const result = await User.findByPk(id);
+        console.log('result: ', result);
+        return result;
     }
-    async update(id: number, body: User): Promise<User> {
-        let user = await this.User.findByPk(id);
-
-        user = await this.User.update({
+    async update(id: number, body: User): Promise<User | null> {
+        await User.update({
             username: body.username,
             biography: body.biography,
             profilePicture: body.profilePicture
-        });
+        }, { where: { userID: id } });
+
+        const user = User.findByPk(id);
 
         return user;
     }
 
     async delete(id: number): Promise<boolean> {
-        let user = await this.User.findByPk(id);
-        user.destroy();
+        let user = await User.findByPk(id);
+        user?.destroy();
         return true;
     }
 
