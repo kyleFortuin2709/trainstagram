@@ -7,14 +7,14 @@ export interface UserAttributes {
   userID: number;
   username: string;
   biography: string;
-  profilePicture: string;
+  profilePicture: Buffer | string;
 }
 
   class User extends Model<UserAttributes> implements UserAttributes {
     declare userID: number;
     declare username: string;
     declare biography: string;
-    declare profilePicture: string;
+    declare profilePicture: Buffer | string;
 
   }
 

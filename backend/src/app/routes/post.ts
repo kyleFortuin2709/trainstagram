@@ -1,12 +1,8 @@
 import { Router } from "express";
-import { postMedia, getMedia, getAllMedia, getAllUserMedia, postPage, viewPost } from "../service/postService";
+import { postMedia, getMedia, getAllMedia, postPage, viewPost } from "../service/postService";
 import { RetrieveFile } from "../service/fileMiddlewareService";
 
 export const postRoutes = Router();
-
-postRoutes.route('/post').get(postPage);
-
-postRoutes.route('/view-post').get(viewPost);
 
 postRoutes.route('/post').post(RetrieveFile, postMedia);
 
@@ -14,7 +10,7 @@ postRoutes.route('/post').post(RetrieveFile, postMedia);
 postRoutes.route('/post-feed').get(getAllMedia);
 
 //Name to be change and moved. Belongs under user routes? View all
-postRoutes.route('/user/post').get(getAllUserMedia);
+postRoutes.route('/user/post').get(getAllMedia);
 
 //Name to be change and moved. Belongs under user routes? View specific
 postRoutes.route('/user/post/:id').get(getMedia);
