@@ -51,7 +51,6 @@ export interface PostAttributes {
     }, {
       freezeTableName: true,
       sequelize: SequelizeConnection.getInstance(),
-      modelName: 'Post',
       timestamps: false
     });
 

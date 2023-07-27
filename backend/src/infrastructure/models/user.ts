@@ -39,7 +39,6 @@ export interface UserAttributes {
     }
     }, {
       freezeTableName: true,
-      modelName: 'User',
       sequelize: SequelizeConnection.getInstance(),
       timestamps: false
     });
