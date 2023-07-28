@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./css/home.css">
+    <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <script src="./js/login.js" defer></script>
     <title>Log In | Trainstagram</title>
   </head>
   <body>
     <main>
       <section id="login-section">
         <img class="logo" src="assets/trainstagram.png" alt="trainstagram logo" />
-        <form action="" method="post">
+        <form action="" method="post" id="login-user">
           <section id="form-heading">
             <h1>Welcome!</h1>
             <h2>Please Log In</h2>
@@ -37,7 +39,7 @@
               required
             />
           </section>
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
           <a href="register.html" id="regLink">No Account?, Register Here</a>
         </form>
       </section>

@@ -2,7 +2,7 @@ import Post, {PostAttributes} from "../../domain/post";
 import { IRepository } from "./IRepository";
 import {Op} from "sequelize";
 
-export class PostRepository implements IRepository<PostAttributes, number> {
+export class PostRepository implements IRepository<PostAttributes, undefined,number> {
 
     public PostRepository() {}
 
@@ -10,7 +10,7 @@ export class PostRepository implements IRepository<PostAttributes, number> {
         console.log(body.userID);
         
         return await Post.create({
-            postID: 0,
+            postID: body.postID,
             userID: body.userID,
             Image: body.Image,
             Likes: 0,
@@ -23,6 +23,11 @@ export class PostRepository implements IRepository<PostAttributes, number> {
         console.log(id);
         const result = await Post.findByPk(id);
         return result?.dataValues;
+    }
+
+        
+    readByOne(body: undefined): Promise<undefined | undefined> {
+        throw new Error("Method not implemented.");
     }
 
     async readAll(id: number): Promise<PostAttributes[] | undefined> {

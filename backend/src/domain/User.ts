@@ -1,18 +1,23 @@
 import { DataTypes, Model } from "sequelize";
-import Post from "./post";
-import sequelize from "sequelize/types/sequelize";
 import { SequelizeConnection } from "../infrastructure/database/SequelizeConnection";
-
+import post from "./post";
 export interface UserAttributes {
   userID: number;
   username: string;
+  password: string;
   biography: string;
   profilePicture: Buffer | string;
+}
+
+export interface UserLoginAttributes {
+  username: string;
+  password: string;
 }
 
   class User extends Model<UserAttributes> implements UserAttributes {
     declare userID: number;
     declare username: string;
+    declare password: string;
     declare biography: string;
     declare profilePicture: Buffer | string;
 
@@ -28,6 +33,10 @@ export interface UserAttributes {
     username: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    password:{
+      type: DataTypes.STRING,
+      allowNull: true
     },
     biography: {
       type: DataTypes.STRING,
@@ -45,5 +54,5 @@ export interface UserAttributes {
 
     // console.log(User === sequelize.models.User);
 
-    User.hasMany(Post, { foreignKey: 'userID' });
+    User.hasMany(post, { foreignKey: 'userID' });
     export default User;

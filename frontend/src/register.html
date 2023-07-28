@@ -4,18 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./css/home.css">
+    <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="./css/register.css">
+    <script src="./js/register.js" defer></script>
     <title>Register | Trainstagram</title>
   </head>
   <body>
     <main>
       <section id="register-section">
         <img class="logo" src="assets/trainstagram.png" alt="trainstagram logo" />
-        <form action="" method="post">
+        <form action="" method="post" id="register-user">
           <section id="form-heading">
             <h1>All Aboard!</h1>
             <h2>Register For Your Train Ticket Here!</h2>
           </section>
+            <input
+              id="new-picture"
+              name="picture"
+              type="file"
+              accept="image/jpeg, image/png, image/jpg,"
+              required
+            />
+            <img
+              class="preview hidden"
+              src="#"
+              alt="picture uploaded by user"
+              id="picture-preview"
+            />
+            <label class="file-upload button" for="new-picture"
+            >Upload a Profile Pic!</label> 
+            <section>
+              <label for="biography">biography</label>
+              <input
+                id="biography"
+                name="biography"
+                type="text"
+                required
+                autofocus
+              />
+            </section>
           <section>
             <label for="username">Username</label>
             <input
