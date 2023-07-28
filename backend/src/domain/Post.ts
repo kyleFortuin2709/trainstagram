@@ -1,6 +1,4 @@
 import { DataTypes, Model } from "sequelize";
-import User from "./user";
-import sequelize from "sequelize/types/sequelize";
 import { SequelizeConnection } from "../infrastructure/database/SequelizeConnection";
 
 export interface PostAttributes {
