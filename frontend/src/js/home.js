@@ -1,38 +1,44 @@
 // JavaScript code for handling navigation and generating image list
-document.addEventListener('DOMContentLoaded', function() {
-  
+document.addEventListener('DOMContentLoaded', async function() {
     const imageList = document.getElementById('imageList');
-    const images = [
-      'image1.jpg',
-      'image2.jpg',
-      'image3.jpg',
-      'image4.jpg',
-      'image5.jpg',
-      'image6.jpg',
-      'image7.jpg',
-      'image8.jpg',
-      'image9.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg',
-      'image10.jpg'
-      ]
+    try {
+      const response =  await fetch("/user/post");
+      const data = await response.json();
   
-    images.forEach(image => {
-      const imageItem = document.createElement('img');
-      imageItem.className = 'imageItem';
-      imageItem.src = `url(${image})`;
-      imageList.appendChild(imageItem);
-    });
+      console.log(data);
+  
+      data.post.forEach((item) => {
+  
+        const resultContainer = document.createElement('div');
+        const h1 = document.createElement("h1");
+        h1.textContent = item.Caption;
+        console.log(item.Caption);
+  
+        const decodedImage = atob(item.Image);
+  
+        // Convert the decoded string into an ArrayBuffer
+        const buffer = new Uint8Array(decodedImage.length);
+        for (let i = 0; i < decodedImage.length; i++) {
+          buffer[i] = decodedImage.charCodeAt(i);
+        }
+
+        // Convert the ArrayBuffer to a Blob
+        const imageBlob = new Blob([buffer], { type: 'image/jpg' });
+  
+        // Create a URL for the Blob
+        const imageUrl = URL.createObjectURL(imageBlob);
+        const imageItem = document.createElement('img');
+
+        imageItem.className = 'imageItem';
+        imageItem.src = imageUrl;
+
+        resultContainer.appendChild(imageItem);
+        resultContainer.appendChild(h1);
+
+        imageList.appendChild(resultContainer);
+      });
+    }catch (error) {
+      console.error("Error fetching data:", error);
+    }
   });
   

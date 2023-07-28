@@ -10,7 +10,7 @@ export class PostRepository implements IRepository<PostAttributes, undefined,num
         console.log(body.userID);
         
         return await Post.create({
-            postID: 0,
+            postID: body.postID,
             userID: body.userID,
             Image: body.Image,
             Likes: 0,
