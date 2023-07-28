@@ -6,13 +6,20 @@ import { SequelizeConnection } from "../database/SequelizeConnection";
 export interface UserAttributes {
   userID: number;
   username: string;
+  password: string;
   biography: string;
   profilePicture: Buffer | string;
+}
+
+export interface UserLoginAttributes {
+  username: string;
+  password: string;
 }
 
   class User extends Model<UserAttributes> implements UserAttributes {
     declare userID: number;
     declare username: string;
+    declare password: string;
     declare biography: string;
     declare profilePicture: Buffer | string;
 
@@ -29,12 +36,16 @@ export interface UserAttributes {
       type: DataTypes.STRING,
       allowNull: false
     },
+    password:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     biography: {
       type: DataTypes.STRING,
       allowNull: false
     },
     profilePicture: {
-      type: DataTypes.STRING,
+      type: DataTypes.BLOB,
       allowNull: true
     }
     }, {
