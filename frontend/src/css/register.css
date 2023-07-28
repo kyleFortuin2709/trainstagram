@@ -72,3 +72,34 @@ button:hover{
 #logLink:active{
     color: #41dab1;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.button {
+    display: inline-block;
+    border: var(--border);
+    border-radius: 0.5rem;
+    display: inline-block;
+    padding: 0.4rem;
+    cursor: pointer;
+    background-color: #41dab1;
+  }
+  
+  .button:hover {
+    /* background-color: azure; */
+    box-shadow: inset 0.1rem 0.2rem 0.2rem white,
+      0.1rem 0.1rem 0.1rem -0.1rem rgb(112, 129, 132);
+  }
+  
+#picture-preview {
+background-color: #41dab1;
+margin: 2rem;
+margin-bottom: 1rem;
+padding: 2rem;
+width: 20rem;
+border: var(--border);
+border-radius: 2rem;
+box-shadow: 0.1rem 0.1rem 0.5rem black;
+}

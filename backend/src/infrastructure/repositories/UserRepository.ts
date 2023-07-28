@@ -1,17 +1,29 @@
-import User, { UserAttributes } from "../../domain/user";
+import User, { UserAttributes, UserLoginAttributes } from "../models/user";
 import { IRepository } from "./IRepository";
 
-export class UserRepository implements IRepository<UserAttributes, number> {
+export class UserRepository implements IRepository<UserAttributes, UserLoginAttributes,number> {
 
     public UserRepository() {}
 
     async create(body: UserAttributes): Promise<UserAttributes> {
         return await User.create({
-            userID: 0,
+            userID: body.userID,
             username: body.username,
+            password: body.password,
             biography: body.biography,
             profilePicture: body.profilePicture,
         });
+    }
+
+    async readByOne(body: UserLoginAttributes): Promise<UserLoginAttributes | undefined> {
+        const user = await User.findOne({
+            where:{
+                'username' : body.username,
+                'password' : body.password
+            }
+        })
+
+        return user?.dataValues;
     }
     
     async readByID(id: number): Promise<UserAttributes | undefined> {
